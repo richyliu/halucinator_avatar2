@@ -128,7 +128,7 @@ class GDBRSPServer(Thread):
             gdb = self.target.protocols.execution
             success, resp = gdb.console_command(f"maintenance packet {pkt.decode()}")
             if success:
-                data = resp.split('received: \\"')[1][:-4]
+                data = resp.split('received: "')[1][:-2]
                 # Data has been escaped twice by time we get it.
                 data = data.encode('utf-8').decode('unicode_escape')
                 data = data.encode('utf-8').decode('unicode_escape')
